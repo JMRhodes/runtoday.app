@@ -14,7 +14,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
           access_type: "offline",
           prompt: "consent",
         },
-        redirectTo: "http://localhost:4321/api/auth/callback",
+        redirectTo: `${import.meta.env.APP_URL}/api/auth/callback`,
       },
     });
 
