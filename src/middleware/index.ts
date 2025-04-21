@@ -40,6 +40,7 @@ export const onRequest = defineMiddleware(
         path: "/",
         secure: true,
       });
+
       cookies.set("sb-refresh-token", data?.session?.refresh_token!, {
         sameSite: "strict",
         path: "/",

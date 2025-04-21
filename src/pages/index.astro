@@ -3,10 +3,16 @@ import Base from "@/layout/Base.astro";
 import { supabase } from "@/lib/supabase";
 import Activity from "@/components/Activity.astro";
 
-let { data: activities, error } = await supabase
-  .from("activities")
-  .select("*")
-  .eq("user_id", Astro.locals.uuid);
+let { data: activities, error } = await supabase.from("activities").select(`
+    id,
+    type,
+    distance,
+    duration,
+    created_at,
+    profiles (
+      full_name,
+      avatar_url
+    )`);
 ---
 
 <Base title="Home">

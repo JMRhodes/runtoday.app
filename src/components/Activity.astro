@@ -1,11 +1,100 @@
 ---
+interface Props {
+  activity: {
+    type: string;
+    distance: number;
+    duration: number;
+    created_at: string;
+    profiles: {
+      avatar_url: string;
+      full_name: string;
+    };
+  };
+}
+
 const { activity } = Astro.props;
 ---
 
-<div class="border-2 border-gray-200 rounded-lg p-4 shadow-md">
-  <h2 class="text-xl font-semibold">{activity.distance}</h2>
-  <p class="text-gray-600">{activity.type}</p>
-  <p class="text-gray-500 text-sm">
-    {new Date(activity.created_at).toLocaleDateString()}
-  </p>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <!-- Activity Header -->
+  <div class="p-4 border-b border-gray-200">
+    <div class="flex items-center">
+      <img
+        class="h-10 w-10 rounded-full mr-4"
+        src={activity.profiles.avatar_url}
+        alt={activity.profiles.full_name}
+        loading="lazy"
+      />
+      <div>
+        <div class="flex items-center">
+          <h3 class="font-semibold text-gray-900">
+            {activity.profiles.full_name}
+          </h3>
+          <span class="ml-2 text-sm text-gray-500">• 2h ago</span>
+        </div>
+        <p class="text-sm text-gray-600">Morning Run</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Stats -->
+  <div class="grid grid-cols-3 border-b border-gray-200">
+    <div class="p-4 border-r border-gray-200">
+      <div class="text-sm text-gray-500">Distance</div>
+      <div class="font-semibold text-gray-900">{activity.distance} mi</div>
+    </div>
+    <div class="p-4 border-r border-gray-200">
+      <div class="text-sm text-gray-500">Time</div>
+      <div class="font-semibold text-gray-900">{activity.duration}</div>
+    </div>
+    <div class="p-4">
+      <div class="text-sm text-gray-500">Pace</div>
+      <div class="font-semibold text-gray-900">5:09 /km</div>
+    </div>
+  </div>
+
+  <!-- Activity Footer -->
+  <div class="p-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <button
+          class="flex items-center text-gray-500 hover:text-strava-orange text-xs"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+            ></path>
+          </svg>
+          <span>Kudos (24)</span>
+        </button>
+      </div>
+      <div>
+        <button class="text-gray-500 hover:text-gray-700">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
