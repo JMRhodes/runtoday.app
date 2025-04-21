@@ -21,10 +21,12 @@ export const GET: APIRoute = async ({ cookies, request, url, redirect }) => {
     secure: true,
     httpOnly: true,
   });
+
   cookies.set("sb-refresh-token", refresh_token, {
     path: "/",
     secure: true,
     httpOnly: true,
   });
+
   return redirect("/");
 };
