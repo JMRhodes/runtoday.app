@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import micromatch from "micromatch";
 
 const protectedRoutes = ["/(|/)"];
-const redirectRoutes = ["/auth/login(|/)"];
+const redirectRoutes = ["/signin(|/)"];
 
 export const onRequest = defineMiddleware(
   async ({ locals, url, cookies, redirect }, next) => {
@@ -12,7 +12,7 @@ export const onRequest = defineMiddleware(
       const refreshToken = cookies.get("sb-refresh-token");
 
       if (!accessToken || !refreshToken) {
-        return redirect("/auth/login");
+        return redirect("/signin");
       }
 
       const { data, error } = await supabase.auth.setSession({
@@ -29,7 +29,7 @@ export const onRequest = defineMiddleware(
           path: "/",
         });
 
-        return redirect("/auth/login");
+        return redirect("/signin");
       }
 
       locals.email = data.user?.email!;
