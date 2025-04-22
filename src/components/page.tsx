@@ -16,6 +16,7 @@ import { AppSidebar } from "@/components/sidebar";
 import React from "react";
 
 interface Props {
+  title?: string;
   children: React.ReactNode;
 }
 
@@ -27,17 +28,7 @@ export default function Page(props: Props) {
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 h-4" />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/">Activities</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Latest</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <h1 className="text-base font-medium">{props.title}</h1>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">{props.children}</div>
       </SidebarInset>
