@@ -1,5 +1,7 @@
 ---
 import "@styles/global.css";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import Page from "@/components/page";
 
 interface Props {
   title: string;
@@ -16,6 +18,10 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <SidebarProvider>
+      <Page client:load>
+        <slot />
+      </Page>
+    </SidebarProvider>
   </body>
 </html>

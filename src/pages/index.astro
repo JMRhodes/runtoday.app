@@ -2,6 +2,7 @@
 import Base from "@/layout/Base.astro";
 import { supabase } from "@/lib/supabase";
 import Activity from "@/components/Activity.astro";
+import Layout from "@/layout/Layout.astro";
 
 let { data: activities, error } = await supabase.from("activities").select(`
     id,
@@ -15,7 +16,7 @@ let { data: activities, error } = await supabase.from("activities").select(`
     )`);
 ---
 
-<Base title="Home" showHeader={true}>
+<Layout title="Home">
   <!-- Page content -->
   <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
     <div class="px-4 py-6 sm:px-0">
@@ -34,4 +35,4 @@ let { data: activities, error } = await supabase.from("activities").select(`
       }
     </div>
   </div>
-</Base>
+</Layout>
