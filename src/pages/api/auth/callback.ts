@@ -18,15 +18,11 @@ export const GET: APIRoute = async ({ cookies, request, url, redirect }) => {
 
   cookies.set("sb-access-token", access_token, {
     path: "/",
-    secure: true,
-    httpOnly: true,
   });
 
   cookies.set("sb-refresh-token", refresh_token, {
     path: "/",
-    secure: true,
-    httpOnly: true,
   });
 
-  return redirect("/");
+  return redirect("/dashboard");
 };

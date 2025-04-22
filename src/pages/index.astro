@@ -15,7 +15,7 @@ let { data: activities, error } = await supabase.from("activities").select(`
     )`);
 ---
 
-<Base title="Home">
+<Base title="Home" showHeader={true}>
   <!-- Page content -->
   <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
     <div class="px-4 py-6 sm:px-0">
