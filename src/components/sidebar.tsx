@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import {CircleDotDashed, LayoutDashboardIcon} from "lucide-react"
+import {CircleDotDashed, LayoutDashboardIcon, ChartGantt} from "lucide-react"
 import { NavMain } from "@components/nav-main"
 import { NavUser } from "@components/nav-user"
 import {
@@ -21,6 +21,11 @@ const data = {
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
+    {
+      title: "Activities",
+      url: "/",
+      icon: ChartGantt,
+    },
     {
       title: "Dashboard",
       url: "/dashboard",

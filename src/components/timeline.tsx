@@ -2,25 +2,24 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatDistanceToNow } from "date-fns";
-import { MonitorIcon as Running, FootprintsIcon as Walking } from "lucide-react"
 
 interface Activity {
-    id: number;
-    user: {
-        name: string;
-        avatar: string;
-        initials: string;
-    };
-    activityName: string;
-    description: string | null;
-    type: "run" | "walk";
-    distance: number; // in miles
-    duration: string; // in minutes:seconds
-    pace: string; // min/mi
-    startTime: Date; // Date object
+  id: number;
+  user: {
+    name: string;
+    avatar: string;
+    initials: string;
+  };
+  activityName: string;
+  description: string | null;
+  type: "run" | "walk";
+  distance: number; // in miles
+  duration: string; // in minutes:seconds
+  pace: string; // min/mi
+  startTime: Date; // Date object
 }
 
-const activities = [
+const activities: Activity[] = [
   {
     id: 1,
     user: {
@@ -83,6 +82,38 @@ const activities = [
     pace: "6:18",
     startTime: new Date(2023, 3, 10, 16, 45), // April 10, 2023, 4:45 PM
   },
+  {
+    id: 5,
+    user: {
+      name: "David Brown",
+      avatar: "/placeholder.svg?height=40&width=40",
+      initials: "DB",
+    },
+    activityName: "Trail Run Adventure",
+    type: "run",
+    description:
+      "Exploring new trails in the mountains. Beautiful scenery and challenging terrain.",
+    distance: 10.5,
+    duration: "1:05:00",
+    pace: "6:11",
+    startTime: new Date(2023, 3, 8, 9, 0), // April 8, 2023, 9:00 AM
+  },
+  {
+    id: 6,
+    user: {
+      name: "Sophia Taylor",
+      avatar: "/placeholder.svg?height=40&width=40",
+      initials: "ST",
+    },
+    activityName: "Evening Walk",
+    type: "walk",
+    description:
+      "A relaxing evening walk around the neighborhood. Enjoying the sunset.",
+    distance: 3.0,
+    duration: "45:00",
+    pace: "15:00",
+    startTime: new Date(2025, 3, 7, 18, 30), // April 7, 2023, 6:30 PM
+  },
 ];
 
 export default function Timeline() {
@@ -111,22 +142,28 @@ export default function Timeline() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                    {activity.type === "run" ? (
-                      <Badge variant="secondary" className="flex items-center gap-1">
-                        <span>Run</span>
-                      </Badge>
-                    ) : (
-                      <Badge variant="outline" className="flex items-center gap-1">
-                        <span>Walk</span>
-                      </Badge>
-                    )}
-                    <Badge variant="outline" className="text-xs">
-                      {new Date(activity.startTime).toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                  {activity.type === "run" ? (
+                    <Badge
+                      variant="secondary"
+                      className="flex items-center gap-1"
+                    >
+                      <span>Run</span>
                     </Badge>
-                  </div>
+                  ) : (
+                    <Badge
+                      variant="outline"
+                      className="flex items-center gap-1"
+                    >
+                      <span>Walk</span>
+                    </Badge>
+                  )}
+                  <Badge variant="outline" className="text-xs">
+                    {new Date(activity.startTime).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </Badge>
+                </div>
               </div>
             </CardHeader>
             <CardContent>
